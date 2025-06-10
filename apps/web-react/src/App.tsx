@@ -2,21 +2,8 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  Button,
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@shadcn/ui/web";
+
+import { FruitSelect, LoginForm } from "@shadcn/ui/shared";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,33 +12,10 @@ function App() {
     <>
       <div>
         <div className="flex flex-col items-center justify-center p-24">
-          <Button variant={"link"} onClick={() => alert("Hello from Web!")}>
-            Click Me, I am a Link Button!
-          </Button>
+          <LoginForm />
+          <FruitSelect />
         </div>
-        <AlertDialog>
-          <AlertDialogTrigger>Open Alert Dialog</AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>Continue</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
 
-        <Alert variant="default">
-          <AlertTitle>Heads up!</AlertTitle>
-          <AlertDescription>
-            You can add components and dependencies to your app using the cli.
-          </AlertDescription>
-        </Alert>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>

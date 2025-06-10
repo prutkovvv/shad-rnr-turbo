@@ -1,23 +1,11 @@
 import { Image } from "expo-image";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
-import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import {
-  Button,
-  Text,
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@shadcn/ui/native";
+
+import { FruitSelect, LoginForm } from "@shadcn/ui/shared";
 
 export default function HomeScreen() {
   return (
@@ -30,38 +18,8 @@ export default function HomeScreen() {
         />
       }
     >
-      <View className="bg-red-500 w-full max-w-3xl flex flex-col items-center justify-center gap-4">
-        <ThemedText>Welcome!!!</ThemedText>
-        <HelloWave />
-        <Button variant={"link"}>
-          <Text>Click me, I am a Link Button!</Text>
-        </Button>
-      </View>
-
-      <AlertDialog defaultOpen>
-        <AlertDialogTrigger>
-          <Button variant="default">
-            <Text>Open Alert Dialog</Text>
-          </Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>
-              <Text>Cancel</Text>
-            </AlertDialogCancel>
-            <AlertDialogAction>
-              <Text>Continue</Text>
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <LoginForm />
+      <FruitSelect />
 
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>

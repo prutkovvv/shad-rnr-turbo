@@ -11,16 +11,25 @@
   },
   "exports": {
     "./web": "./src/components/web/index.ts",
-    "./native": "./src/components/native/index.ts"
+    "./native": "./src/components/native/index.ts",
+    "./shared": "./src/components/shared/index.ts",
+    "./ui": "./src/components/ui/index.ts"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-slot": "^1.2.3",
     "@rn-primitives/alert-dialog": "^1.2.0",
+    "@rn-primitives/label": "^1.2.0",
+    "@rn-primitives/portal": "^1.3.0",
+    "@rn-primitives/select": "^1.2.0",
     "@rn-primitives/slot": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.513.0",
+    "lucide-react-native": "^0.513.0",
+    "react-native-safe-area-context": "^5.4.1",
     "tailwind-merge": "^3.3.0",
     "tw-animate-css": "^1.3.4"
   },

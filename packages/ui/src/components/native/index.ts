@@ -1,4 +1,2 @@
-export * from "./button";
-export * from "./alert";
-export * from "./alert-dialog";
-export * from "./text";
+export * from "./PortalHost";
+export * from "./Slot";
