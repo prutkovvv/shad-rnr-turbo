@@ -1,17 +1,4 @@
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../ui/Card";
-import { Button } from "../../ui/Button";
-import { Input } from "../../ui/Input";
-import { Label } from "../../ui/Label";
-import { View } from "../../ui/View";
-import { Text } from "../../ui/Text";
+import { View } from "react-native";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,12 +10,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../../ui/AlertDialog";
+import { Button } from "../../ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../ui/Card";
+import { Input } from "../../ui/Input";
+import { Label } from "../../ui/Label";
+import { Text } from "../../ui/Text";
 
 export const LoginForm = () => {
   return (
     <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle className="self-center">Login to your account!</CardTitle>
+      <CardHeader className="justify-center items-center">
+        <CardTitle>Login to your account!</CardTitle>
         <CardDescription>
           Enter your email below to login to your account
         </CardDescription>
@@ -60,12 +59,7 @@ export const LoginForm = () => {
         <View className="flex flex-col gap-6">
           <View className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
-            />
+            <Input id="email" placeholder="m@example.com" />
           </View>
           <View className="grid gap-2">
             <View className="flex items-center flex-row">
@@ -77,19 +71,15 @@ export const LoginForm = () => {
                 <Text>Forgot your password?</Text>
               </Button>
             </View>
-            <Input id="password" type="password" secureTextEntry required />
+            <Input id="password" secureTextEntry />
           </View>
         </View>
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button
-          onClick={() => {
-            console.log("web onClick");
-          }}
           onPress={() => {
             console.log("native onPress");
           }}
-          type="submit"
           className="w-full"
         >
           <Text>Login</Text>

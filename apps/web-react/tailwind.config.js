@@ -6,7 +6,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
     "../../packages/ui/**/*.{js,jsx,ts,tsx}",
   ],
-  presets: [sharedConfig],
+  presets: [sharedConfig, require("nativewind/preset")],
   darkMode: ["class"],
   theme: {
     extend: {},

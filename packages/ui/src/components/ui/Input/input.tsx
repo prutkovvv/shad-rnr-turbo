@@ -1,18 +1,22 @@
 import * as React from "react";
-
+import { TextInput, type TextInputProps } from "react-native";
 import { cn } from "../../../lib/utils";
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+function Input({
+  className,
+  placeholderClassName,
+  ...props
+}: TextInputProps & {
+  ref?: React.RefObject<TextInput>;
+}) {
   return (
-    <input
-      type={type}
-      data-slot="input"
+    <TextInput
       className={cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        "web:flex h-10 native:h-12 web:w-full rounded-md border border-input bg-background px-3 web:py-2 text-base lg:text-sm native:text-lg native:leading-[1.25] text-foreground placeholder:text-muted-foreground web:ring-offset-background file:border-0 file:bg-transparent file:font-medium web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2",
+        props.editable === false && "opacity-50 web:cursor-not-allowed",
         className
       )}
+      placeholderClassName={cn("text-muted-foreground", placeholderClassName)}
       {...props}
     />
   );

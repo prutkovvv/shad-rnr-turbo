@@ -1,16 +1,18 @@
-import * as React from "react";
+import { useTheme } from "@react-navigation/native";
 import { cva, type VariantProps } from "class-variance-authority";
-
+import type { LucideIcon } from "lucide-react-native";
+import * as React from "react";
+import { View, type ViewProps } from "react-native";
 import { cn } from "../../../lib/utils";
+import { Text } from "../Text";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+  "relative bg-background w-full rounded-lg border border-border p-4 shadow shadow-foreground/10",
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
-        destructive:
-          "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
+        default: "",
+        destructive: "border-destructive",
       },
     },
     defaultVariants: {
@@ -22,24 +24,44 @@ const alertVariants = cva(
 function Alert({
   className,
   variant,
+  children,
+  icon: Icon,
+  iconSize = 16,
+  iconClassName,
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
+}: ViewProps &
+  VariantProps<typeof alertVariants> & {
+    ref?: React.RefObject<View>;
+    icon: LucideIcon;
+    iconSize?: number;
+    iconClassName?: string;
+  }) {
+  const { colors } = useTheme();
   return (
-    <div
-      data-slot="alert"
+    <View
       role="alert"
-      className={cn(alertVariants({ variant }), className)}
+      className={alertVariants({ variant, className })}
       {...props}
-    />
+    >
+      <View className="absolute left-3.5 top-4 -translate-y-0.5">
+        <Icon
+          size={iconSize}
+          color={variant === "destructive" ? colors.notification : colors.text}
+        />
+      </View>
+      {children}
+    </View>
   );
 }
 
-function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
+function AlertTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof Text>) {
   return (
-    <div
-      data-slot="alert-title"
+    <Text
       className={cn(
-        "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
+        "pl-7 mb-1 font-medium text-base leading-none tracking-tight text-foreground",
         className
       )}
       {...props}
@@ -50,17 +72,13 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
 function AlertDescription({
   className,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<typeof Text>) {
   return (
-    <div
-      data-slot="alert-description"
-      className={cn(
-        "text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
-        className
-      )}
+    <Text
+      className={cn("pl-7 text-sm leading-relaxed text-foreground", className)}
       {...props}
     />
   );
 }
 
-export { Alert, AlertTitle, AlertDescription };
+export { Alert, AlertDescription, AlertTitle };

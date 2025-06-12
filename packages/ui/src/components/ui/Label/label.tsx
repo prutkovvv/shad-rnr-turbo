@@ -1,22 +1,33 @@
-"use client";
-
+import * as LabelPrimitive from "@rn-primitives/label";
 import * as React from "react";
-import * as LabelPrimitive from "@radix-ui/react-label";
 import { cn } from "../../../lib/utils";
 
 function Label({
   className,
+  onPress,
+  onLongPress,
+  onPressIn,
+  onPressOut,
   ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: LabelPrimitive.TextProps & {
+  ref?: React.RefObject<LabelPrimitive.TextRef>;
+}) {
   return (
     <LabelPrimitive.Root
-      data-slot="label"
-      className={cn(
-        "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
-        className
-      )}
-      {...props}
-    />
+      className="web:cursor-default"
+      onPress={onPress}
+      onLongPress={onLongPress}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+    >
+      <LabelPrimitive.Text
+        className={cn(
+          "text-sm text-foreground native:text-base font-medium leading-none web:peer-disabled:cursor-not-allowed web:peer-disabled:opacity-70",
+          className
+        )}
+        {...props}
+      />
+    </LabelPrimitive.Root>
   );
 }
 
